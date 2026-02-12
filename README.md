@@ -11,3 +11,5 @@ Este sistema ayuda a las plataformas de alquiler vacacional a gestionar de maner
 1. **ANFITRIÓN**:Crear y gestionar los anuncios y avisos, aceptar o rechazar solicitudes de huespedes, garantizar que el alojamiento sea seguro y legal.
 2. **HUESPEDES**:Registrarse y crear perfil, buscar y reservar el alojamiento,dejar reseñas y calificiones del lugar,cumplir con las normas.
 3. **ADMINISTRADORES DE PLATAFORMA**:
+
+## 3. 
