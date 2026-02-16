@@ -28,4 +28,33 @@ Este sistema ayuda a las plataformas de alquiler vacacional a gestionar de maner
 ---
 ## 4. Desiciones Iniciales 
 
-### Metodología de Desarrollo 
+### Metodología de Desarrollo
+
+**Elegi**: [Scrum / Kanban / Cascada]
+
+**¿Por qué?** : Porque permite estructurar primero los requisitos legales y la documentación (Cascada), desarrollar el sistema por módulos de forma flexible e incremental (Scrum) y gestionar posteriormente incidencias y mejoras continuas de manera visual y priorizada (Kanban).
+
+### Arquitectura Inicial
+
+**Elegí**: [Monolito / N-Capas]
+
+**¿Por qué?**: Explica en 2-3 líneas (para empezar, lo simple es mejor)
+
+### Tecnologías
+
+- **Backend**: Node.js (porque ya lo conocemos)
+- **Base de datos**: PostgreSQL (porque es gratis y potente)
+- **Frontend**: React (porque tiene mucha documentación)
+
+_Nota: Puedes elegir otras, pero justifica brevemente_
+
+---
+
+**Autor**: Tu nombre
+**Fecha**: Febrero 2026
+**Bootcamp**: Arquitectura de Software - SENA
+
+
+
+
+
