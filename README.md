@@ -46,11 +46,10 @@ Este sistema ayuda a las plataformas de alquiler vacacional a gestionar de maner
 - **Base de datos**: PostgreSQL (porque es gratis y potente)
 - **Frontend**: React (porque tiene mucha documentación)
 
-_Nota: Puedes elegir otras, pero justifica brevemente_
 
 ---
 
-**Autor**: Tu nombre
+**Autor**: Nicol Dayana Neira Lopez 
 **Fecha**: Febrero 2026
 **Bootcamp**: Arquitectura de Software - SENA
 
