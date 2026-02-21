@@ -38,13 +38,13 @@ Este sistema ayuda a las plataformas de alquiler vacacional a gestionar de maner
 
 **Elegí**: [Monolito / N-Capas]
 
-**¿Por qué?**: Explica en 2-3 líneas (para empezar, lo simple es mejor)
+**¿Por qué?**: Porque al inicio el sistema será más fácil de desarrollar, mantener y desplegar. Separar el sistema en capas (presentación, lógica de negocio y base de datos) permite organizar funcionalidades como validación de licencias, registro de incidencias y control de regulación sin complicar demasiado el proyecto.
 
 ### Tecnologías
 
-- **Backend**: Node.js (porque ya lo conocemos)
-- **Base de datos**: PostgreSQL (porque es gratis y potente)
-- **Frontend**: React (porque tiene mucha documentación)
+- **Backend**: Node.js (Porque permite crear APIs rápidas para validar licencias, registrar alquileres y manejar incidencias).
+- **Base de datos**: PostgreSQL (Porque es robusta, gratuita y permite manejar grandes cantidades de datos como registros de propiedades, anfitriones, turistas y reportes).
+- **Frontend**: React (Porque facilita crear interfaces claras para autoridades, anfitriones y administradores del sistema).
 
 
 ---
