@@ -48,3 +48,7 @@ Este sistema ayuda a las plataformas de alquiler vacacional a gestionar de maner
 
 ---
 
+**Autor**: Nicol Dayana Neira Lopez 
+**Fecha**: Febrero 2026
+**Bootcamp**: Arquitectura de Software - SENA
+
