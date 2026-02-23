@@ -12,3 +12,20 @@ Este sistema ayuda a las plataformas de alquiler vacacional a gestionar de maner
 
 2. **HUÉSPEDES**: Registrarse y crear perfil; buscar y reservar el alojamiento; dejar reseñas y calificaciones del lugar; cumplir con las normas.
 
+3. **ADMINISTRADORES DE PLATAFORMA**: Gestionar los usuarios; controlar las publicaciones; supervisión de lo normativo; monitoreo y seguridad.
+
+---
+## 3. Funcionalidades Principales 
+
+- [ ] Registro de usuarios
+- [ ] Publicación de alojamientos
+- [ ] Búsqueda y filtros
+- [ ] Reservas y pagos
+- [ ] Reseñas y calificaciones
+- [ ] Mensajeria interna
+- [ ] Seguridad y soporte
+
+---
+## 4. Desiciones Iniciales 
+
+### Metodología de Desarrollo
