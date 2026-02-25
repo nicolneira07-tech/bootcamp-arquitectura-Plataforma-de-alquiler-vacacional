@@ -1,10 +1,6 @@
-# Plataforma de Alquiler Vacacional
+#  🎯Descripción Del Proyecto
 
-## Descripción del Proyecto
-
-Este proyecto implementa una **Plataforma de Alquiler Vacacional** desarrollada en JavaScript que permite gestionar propiedades destinadas al alquiler turístico, controlar reservas y verificar licencias de funcionamiento.
-
-El sistema surge como solución a la necesidad de regular y organizar el alquiler de viviendas turísticas dentro de una ciudad.
+Este proyecto de **Plataforma de Alquiler Vacacional** desarrollada en JavaScript que permite gestionar propiedades destinadas al alquiler turístico, controlar reservas y verificar licencias de funcionamiento.El sistema surge como solución a la necesidad de regular y organizar el alquiler de viviendas turísticas dentro de una ciudad.
 
 La plataforma permite:
 
@@ -19,7 +15,7 @@ Este tipo de sistemas es utilizado por plataformas internacionales como Airbnb, 
 
 ---
 
-# Problema que resuelve
+#  🎯Problema Que Resuelve
 
 Muchas ciudades tienen dificultades para controlar el alquiler turístico porque:
 
@@ -32,40 +28,41 @@ Este sistema permite tener un **control centralizado de la información**, ayuda
 
 ---
 
-# Tecnologías Utilizadas
+# 🎯Tecnologías Utilizadas
 
 El proyecto está construido con las siguientes tecnologías:
 
+```
 * **Node.js**
 * **JavaScript ES2023**
 * Arquitectura basada en **principios SOLID**
 * Persistencia en memoria mediante **Memory Repository**
 * Estructura modular por capas
-
+```
 ---
 
-# Arquitectura del Proyecto
+# 🎯Arquitectura del Proyecto
 
 El sistema está organizado siguiendo una arquitectura simple por capas:
 
-domain
-Contiene las entidades del negocio y las interfaces.
+1. ### Domain
+   ✅Contiene las entidades del negocio y las interfaces.
 
-services
-Contiene la lógica de negocio.
+2. ### Services
+   ✅Contiene la lógica de negocio.
 
-repositories
-Se encarga de la persistencia de datos.
+3. ### Repositories
+   ✅Se encarga de la persistencia de datos.
 
-validators
-Se encargan de validar las reglas del sistema.
+4. ### Validators
+   ✅Se encargan de validar las reglas del sistema.
 
-index.js
-Punto de entrada de la aplicación.
+5. ### index.js
+   ✅Punto de entrada de la aplicación.
 
 ---
 
-# Estructura del Proyecto
+# 🎯Estructura del Proyecto
 
 ```
 plataforma-alquiler-vacacional/
@@ -101,80 +98,78 @@ index.js
 
 ---
 
-# Instalación del Proyecto
+# 🎯Instalación del Proyecto
 
 Sigue estos pasos para ejecutar el proyecto en tu computadora.
 
-### 1 Clonar el repositorio
+### 1. Clonar el Repositorio
 
-git clone URL_DEL_REPOSITORIO
+- ``` git clone URL_DEL_REPOSITORIO ```
 
-### 2 Entrar a la carpeta del proyecto
+### 2. Entrar a la Carpeta del Proyecto
 
-cd plataforma-alquiler-vacacional
+- ``` cd plataforma-alquiler-vacacional ```
 
-### 3 Instalar dependencias
+### 3. Instalar Dependencias
 
-pnpm install
+- ``` pnpm install ```
 
-Si no tienes pnpm instalado puedes instalarlo con:
+Si no tienes ``` pnpm ``` instalado puedes instalarlo con:
 
-npm install -g pnpm
-
----
-
-# Comandos del Proyecto
-
-Instalar dependencias
-
-pnpm install
-
-Ejecutar el sistema
-
-node src/index.js
-
-Ejecutar pruebas
-
-pnpm test
+- ``` npm install -g pnpm ```
 
 ---
 
-# Ejecución del Proyecto
+# 🎯Comandos del Proyecto
 
-Para iniciar el sistema ejecuta:
+1. Instalar Dependencias
 
-node src/index.js
+   * ``` pnpm install ```
 
-El sistema creará una reserva de ejemplo y mostrará el resultado en la consola.
+2. Ejecutar el Sistema
+
+   * ``` node src/index.js ```
+
+3. Ejecutar Pruebas
+
+   * ``` pnpm test ```
+
+---
+
+# 🎯Ejecución del Proyecto
+
+* Para iniciar el sistema ejecuta:
+
+- ``` node src/index.js ```
+
+* El sistema creará una reserva de ejemplo y mostrará el resultado en la consola.
 
 Ejemplo de salida:
-
-[
-{
+```
+[ {
 id: 1,
 propiedadId: 101,
 huesped: "Laura",
 estado: "PENDIENTE"
-}
-]
-
+}]
+```
 ---
 
-# Funcionamiento General
+# 🎯Funcionamiento General
 
 El flujo del sistema es el siguiente:
 
-1. Se reciben los datos de una reserva
-2. Se validan las reglas del sistema
-3. Se crea la entidad de dominio
-4. Se guarda la información en el repositorio
-5. Se devuelve el resultado
+ 1. Se reciben los datos de una reserva
+ 2. Se validan las reglas del sistema
+ 3. Se crea la entidad de dominio
+ 4. Se guarda la información en el repositorio
+ 5. Se devuelve el resultado
 
-Esto se realiza utilizando **inyección de dependencias** para desacoplar los componentes.
+Esto se realiza utilizando ``` **inyección de dependencias** ``` para desacoplar los componentes.
 
 ---
 
-# Principios SOLID Aplicados
+# 🎯Principios SOLID Aplicados
 
 El proyecto aplica los cinco principios SOLID para mantener una arquitectura limpia y escalable.
 
@@ -242,7 +237,7 @@ const reservas = await reservaService.obtenerReservas();
 
 ---
 
-# Documentación Técnica
+# 🎯Documentación Técnica
 
 Para ver la explicación completa de cómo se aplican los principios SOLID en el proyecto, revisar el archivo:
 
@@ -250,7 +245,7 @@ SOLID-APLICADO.md
 
 ---
 
-# Posibles Mejoras Futuras
+# 🎯Posibles Mejoras Futuras
 
 Implementar base de datos real
 Crear API REST
@@ -261,7 +256,7 @@ Implementar microservicios
 
 ---
 
-# Autor
+# 🎯Autor
 
 Proyecto académico desarrollado para el Bootcamp de Arquitectura de Software
 SENA – Tecnología en Análisis y Desarrollo de Software
