@@ -1,17 +1,10 @@
 #  🎯Descripción Del Proyecto
 
-Este proyecto de **Plataforma de Alquiler Vacacional** desarrollada en JavaScript que permite gestionar propiedades destinadas al alquiler turístico, controlar reservas y verificar licencias de funcionamiento.El sistema surge como solución a la necesidad de regular y organizar el alquiler de viviendas turísticas dentro de una ciudad.
+Este proyecto corresponde a la segunda iteración del sistema **Plataforma de Alquiler Vacacional**, desarrollado en **JavaScript ES2023**.
 
-La plataforma permite:
+El sistema permite gestionar reservas de propiedades turísticas dentro de una ciudad, garantizando una arquitectura limpia mediante la aplicación de los **principios SOLID**.
 
-* Registrar propiedades de alquiler
-* Verificar licencias de funcionamiento
-* Gestionar reservas de huéspedes
-* Controlar límites de días de alquiler
-* Registrar incidencias
-* Facilitar la supervisión por parte de autoridades
-
-Este tipo de sistemas es utilizado por plataformas internacionales como Airbnb, pero en este proyecto se enfoca principalmente en **la regulación y control de documentación**.
+El objetivo principal es demostrar separación de responsabilidades, bajo acoplamiento y alta cohesión en el diseño del sistema.
 
 ---
 
@@ -24,7 +17,12 @@ Muchas ciudades tienen dificultades para controlar el alquiler turístico porque
 * No existe seguimiento de incidencias
 * Falta trazabilidad de las reservas
 
-Este sistema permite tener un **control centralizado de la información**, ayudando a turistas, anfitriones, vecinos y autoridades.
+Este proyecto implementa una solución modular que permite:
+
+* Crear reservas
+* Validar reglas básicas del negocio
+* Persistir información en memoria
+* Aplicar arquitectura limpia mediante **SOLID**
 
 ---
 
@@ -43,21 +41,35 @@ El proyecto está construido con las siguientes tecnologías:
 
 # 🎯Arquitectura del Proyecto
 
-El sistema está organizado siguiendo una arquitectura simple por capas:
+El sistema está organizado por capas, separando claramente responsabilidades:
 
-1. ### Domain
+1. ### 📂Domain
    ✅Contiene las entidades del negocio y las interfaces.
+   ```
+   * propiedad.js
+   * reserva.js
+   * repository.js (abstracción)
+   ```
 
-2. ### Services
+3. ### 📂Services
    ✅Contiene la lógica de negocio.
+   ```
+   reserva-service.js
+   ```
 
-3. ### Repositories
+5. ### 📂Repositories
    ✅Se encarga de la persistencia de datos.
+   ```
+   memory-repository.js
+   ```
 
-4. ### Validators
+7. ### 📂Validators
    ✅Se encargan de validar las reglas del sistema.
+   ```
+   reserva-validator.js
+   ```
 
-5. ### index.js
+9. ### 📂index.js
    ✅Punto de entrada de la aplicación.
 
 ---
@@ -72,28 +84,23 @@ SOLID-APLICADO.md
 package.json
 
 src/
-
-domain/
-entities/
-propiedad.js
-reserva.js
-licencia.js
-
-interfaces/
-repository.js
-notification-service.js
-
-repositories/
-memory-repository.js
-
-services/
-reserva-service.js
-licencia-service.js
-
-validators/
-reserva-validator.js
-
-index.js
+ ├── domain/
+ │    ├── entities/
+ │    │     ├── propiedad.js
+ │    │     └── reserva.js
+ │    └── interfaces/
+ │          └── repository.js
+ │
+ ├── repositories/
+ │     └── memory-repository.js
+ │
+ ├── services/
+ │     └── reserva-service.js
+ │
+ ├── validators/
+ │     └── reserva-validator.js
+ │
+ └── index.js
 ```
 
 ---
@@ -104,35 +111,19 @@ Sigue estos pasos para ejecutar el proyecto en tu computadora.
 
 ### 1. Clonar el Repositorio
 
-- ``` git clone URL_DEL_REPOSITORIO ```
+ ``` git clone URL_DEL_REPOSITORIO ```
 
 ### 2. Entrar a la Carpeta del Proyecto
 
-- ``` cd plataforma-alquiler-vacacional ```
+ ``` cd plataforma-alquiler-vacacional ```
 
 ### 3. Instalar Dependencias
 
-- ``` pnpm install ```
+ ``` pnpm install ```
 
 Si no tienes ``` pnpm ``` instalado puedes instalarlo con:
 
-- ``` npm install -g pnpm ```
-
----
-
-# 🎯Comandos del Proyecto
-
-1. Instalar Dependencias
-
-   * ``` pnpm install ```
-
-2. Ejecutar el Sistema
-
-   * ``` node src/index.js ```
-
-3. Ejecutar Pruebas
-
-   * ``` pnpm test ```
+ ``` npm install -g pnpm ```
 
 ---
 
@@ -140,18 +131,20 @@ Si no tienes ``` pnpm ``` instalado puedes instalarlo con:
 
 * Para iniciar el sistema ejecuta:
 
-- ``` node src/index.js ```
+ ``` node src/index.js ```
 
 * El sistema creará una reserva de ejemplo y mostrará el resultado en la consola.
 
 Ejemplo de salida:
 ```
-[ {
-id: 1,
-propiedadId: 101,
-huesped: "Laura",
-estado: "PENDIENTE"
-}]
+[
+Reserva {
+   id: 1,
+   propiedadId: 101,
+   huesped: "Laura",
+   estado: "PENDIENTE"
+}
+]
 ```
 ---
 
@@ -160,104 +153,84 @@ estado: "PENDIENTE"
 El flujo del sistema es el siguiente:
 
  1. Se reciben los datos de una reserva
- 2. Se validan las reglas del sistema
- 3. Se crea la entidad de dominio
- 4. Se guarda la información en el repositorio
+ 2. Se validan las reglas del negocio (```ReservaValidator```)
+ 3. Se crea la entidad de ```Reserva```
+ 4. Se guarda la información en el ```MemoryRepository```
  5. Se devuelve el resultado
 
-Esto se realiza utilizando ``` **inyección de dependencias** ``` para desacoplar los componentes.
+Esto se realiza utilizando ``` inyección de dependencias ``` para desacoplar los componentes.
 
 ---
 
 # 🎯Principios SOLID Aplicados
 
-El proyecto aplica los cinco principios SOLID para mantener una arquitectura limpia y escalable.
-
-### SRP — Single Responsibility Principle
-
-Cada clase tiene una única responsabilidad.
-
-Ejemplo:
-
-ReservaValidator valida datos
-MemoryRepository guarda datos
-ReservaService gestiona la lógica de negocio
+### 🟢SRP — Single Responsibility Principle
+Cada clase tiene una única responsabilidad:
+* ```Reserva``` → Representa datos del dominio
+* ```ReservaValidator``` → Valida reglas
+* ```MemoryRepository``` → Guarda datos
+* ```ReservaService``` → Gestiona la lógica de negocio
 
 ---
 
-### OCP — Open Closed Principle
+### 🟢OCP — Open Closed Principle
 
 El sistema puede extender funcionalidades sin modificar el código existente.
 
-Ejemplo: agregar nuevos tipos de notificación.
+Ejemplo: 
+Se puede crear una nueva implementación como:
+
+* ```PostgreSQLRepository```
+* ```MongoRepository```
+
+Sin modificar ```ReservaService```, ya que este depende de la abstracción ```Repository```.
 
 ---
 
-### LSP — Liskov Substitution Principle
+### 🟢LSP — Liskov Substitution Principle
 
-Las clases hijas pueden sustituir a su clase base sin romper el sistema.
+```MemoryRepository``` extiende ```Repository``` y puede sustituirlo sin afectar el funcionamiento del sistema.
 
----
-
-### ISP — Interface Segregation Principle
-
-Se utilizan interfaces pequeñas y específicas para evitar dependencias innecesarias.
+Cualquier implementación que respete el contrato de ```Repository``` funcionará correctamente.
 
 ---
 
-### DIP — Dependency Inversion Principle
+### 🟢ISP — Interface Segregation Principle
 
-Los servicios dependen de **abstracciones** y no de implementaciones concretas.
-
-Ejemplo:
-
-ReservaService recibe un repository y un validator mediante el constructor.
+La interfaz ```Repository``` contiene únicamente los métodos necesarios (```save```, ```findAll```), evitando métodos innecesarios o dependencias forzadas.
 
 ---
 
-# Ejemplo de Uso
+### 🟢DIP — Dependency Inversion Principle
 
-Crear una reserva dentro del sistema:
+```ReservaService``` no instancia directamente ```MemoryRepository```.
 
+En su lugar, recibe las dependencias por constructor:
+
+```JavaScript
+constructor(repository, validator) {
+  this.repository = repository;
+  this.validator = validator;
+}
 ```
-const reserva = await reservaService.crearReserva({
- id: 1,
- propiedadId: 101,
- huesped: "Laura",
- fechaInicio: "2026-03-01",
- fechaFin: "2026-03-05"
-});
-```
-
-Luego consultar todas las reservas:
-
-```
-const reservas = await reservaService.obtenerReservas();
-```
-
 ---
 
 # 🎯Documentación Técnica
 
 Para ver la explicación completa de cómo se aplican los principios SOLID en el proyecto, revisar el archivo:
 
-SOLID-APLICADO.md
+```SOLID-APLICADO.md```
 
 ---
 
 # 🎯Posibles Mejoras Futuras
 
-Implementar base de datos real
-Crear API REST
-Agregar autenticación
-Agregar panel administrativo
-Registrar incidencias de vecinos
-Implementar microservicios
+* Implementar base de datos real
+* Crear API REST
+* Agregar autenticación
+* Control de licencias más avanzado
+* Implementar microservicios
 
 ---
-
-# 🎯Autor
-
-Proyecto académico desarrollado para el Bootcamp de Arquitectura de Software
-SENA – Tecnología en Análisis y Desarrollo de Software
-
+**Proyecto académico desarrollado del Bootcamp de Arquitectura de Software**
+*SENA* – Tecnología en Análisis y Desarrollo de Software
