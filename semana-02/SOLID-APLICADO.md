@@ -8,7 +8,7 @@ El sistema fue diseñado para gestionar reservas de propiedades
 turísticas utilizando separación clara de responsabilidades y
 dependencias basadas en abstracciones.
 
-------------------------------------------------------------------------
+---
 
 # 🟢 1. SRP - Single Responsibility Principle
 
@@ -29,7 +29,7 @@ de cambio.
 | Coordinación del flujo de negocio | `reserva-service.js`  | Cambios en el proceso de creación   |
 |                                   |                       |                                     |
                                
--------------------------------------------------------------------------
+---
 
 ## 📌 Ejemplo Aplicado
 
@@ -67,7 +67,7 @@ Si en el futuro se requiere usar:
 Solo se crea una nueva clase que extienda `Repository`, sin modificar
 `ReservaService`.
 
-------------------------------------------------------------------------
+---
 
 # 🟢 3. LSP - Liskov Substitution Principle
 
@@ -87,7 +87,7 @@ MemoryRepository extiende Repository y respeta su contrato:
 cualquier implementación que cumpla ese contrato puede sustituirse sin
 afectar el funcionamiento.
 
-------------------------------------------------------------------------
+---
 
 # 🟢 4. ISP - Interface Segregation Principle
 
@@ -103,7 +103,7 @@ La interfaz `Repository` contiene únicamente los métodos necesarios:
 * Cada componente implementa solo lo que realmente necesita.
 * Esto reduce dependencias innecesarias y mejora claridad estructural.
 
-------------------------------------------------------------------------
+---
 
 # 🟢 5. DIP --- Dependency Inversion Principle
 
@@ -127,7 +127,25 @@ Esto significa que:
 Si se cambia la base de datos, no es necesario modificar el servicio.
 Esto reduce el acoplamiento y mejora la flexibilidad del sistema.
 
-------------------------------------------------------------------------
+---
+# 📊 Tabla de Cumplimiento SOLID
+
+| Principio |          ¿Dónde se aplica en mi dominio?                               | Clase/Archivo                                                            |  ✔ |
+|-----------|------------------------------------------------------------------------|--------------------------------------------------------------------------|-----|
+| **SRP**   |Cada clase tiene una única responsabilidad:entidad, validación, etc...  |`reserva.js, propiedad.js, reserva-validator.js, memory-repository.js,etc`| ✅ |
+| **OCP**   |Se puede cambiar el tipo de repositorio (ej: base de datos real)        |`repository.js, memory-repository.js`                                     | ✅    
+| **LSP**   |MemoryRepository puede sustituir a Repository sin afectar funcionamiento|`repository.js, memory-repository.js`                                     |      |                            |             
+|     **ISP**     |                                                                        |                                                   |    
+|     **DIP**     |                               
+| OCP | Se puede cambiar el tipo de repositorio (ej: base de datos real) sin modificar el servicio | repository.js, memory-repository.js | ✅ |
+| LSP | MemoryRepository puede sustituir a Repository sin afectar el funcionamiento del sistema | repository.js, memory-repository.js | ✅ |
+| ISP | La interfaz Repository solo define los métodos necesarios (save, findAll) | repository.js | ✅ |
+| DIP | ReservaService depende de la abstracción Repository y no de una implementación concreta | reserva-service.js | ✅ |
+
+
+
+
+---
 
 # 🎯 Beneficios Arquitectónicos
 
@@ -138,7 +156,7 @@ Esto reduce el acoplamiento y mejora la flexibilidad del sistema.
 -   ✅Facilidad de mantenimiento
 -   ✅Posibilidad de migrar a microservicios
 
-------------------------------------------------------------------------
+---
 
 # 🎯 Conclusión
 
