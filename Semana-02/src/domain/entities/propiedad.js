@@ -1,4 +1,3 @@
-``` JavaScript
 
 class Propiedad {
   constructor(id, nombre, ubicacion, precioPorNoche) {
