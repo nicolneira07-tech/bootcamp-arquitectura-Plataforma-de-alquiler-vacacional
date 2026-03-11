@@ -1,8 +1,8 @@
-# Plataforma de Alquiler Vacacional - Arquitectura
+# 🚀Plataforma de Alquiler Vacacional - Arquitectura
 
 ## 🎯Patrón Seleccionado
 
-  ➡️**Arquitectura en Capas**
+### - **Arquitectura en capas**
 
 ## 🎯Justificación en una línea
 
