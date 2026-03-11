@@ -1,4 +1,8 @@
-#  🎯Descripción Del Proyecto
+
+# 🚀Aplicación de Principios SOLID - Plataforma de Alquiler Vacacional
+
+
+##  🎯Descripción Del Proyecto
 
 Este proyecto corresponde a la segunda iteración del sistema **Plataforma de Alquiler Vacacional**, desarrollado en **JavaScript ES2023**.
 
@@ -8,7 +12,7 @@ El objetivo principal es demostrar separación de responsabilidades, bajo acopla
 
 ---
 
-#  🎯Problema Que Resuelve
+##  🎯Problema Que Resuelve
 
 Muchas ciudades tienen dificultades para controlar el alquiler turístico porque:
 
@@ -26,7 +30,7 @@ Este proyecto implementa una solución modular que permite:
 
 ---
 
-# 🎯Tecnologías Utilizadas
+## 🎯Tecnologías Utilizadas
 
 El proyecto está construido con las siguientes tecnologías:
 
@@ -39,7 +43,7 @@ El proyecto está construido con las siguientes tecnologías:
 ```
 ---
 
-# 🎯Arquitectura del Proyecto
+## 🎯Arquitectura del Proyecto
 
 El sistema está organizado por capas, separando claramente responsabilidades:
 
@@ -74,7 +78,7 @@ El sistema está organizado por capas, separando claramente responsabilidades:
 
 ---
 
-# 🎯Estructura del Proyecto
+## 🎯Estructura del Proyecto
 
 ```
 plataforma-alquiler-vacacional/
@@ -105,7 +109,7 @@ src/
 
 ---
 
-# 🎯Instalación del Proyecto
+## 🎯Instalación del Proyecto
 
 Sigue estos pasos para ejecutar el proyecto en tu computadora.
 
@@ -127,7 +131,7 @@ Si no tienes ``` pnpm ``` instalado puedes instalarlo con:
 
 ---
 
-# 🎯Ejecución del Proyecto
+## 🎯Ejecución del Proyecto
 
 * Para iniciar el sistema ejecuta:
 
@@ -148,7 +152,7 @@ Reserva {
 ```
 ---
 
-# 🎯Funcionamiento General
+## 🎯Funcionamiento General
 
 El flujo del sistema es el siguiente:
 
@@ -162,7 +166,7 @@ Esto se realiza utilizando ``` inyección de dependencias ``` para desacoplar lo
 
 ---
 
-# 🎯Principios SOLID Aplicados
+## 🎯Principios SOLID Aplicados
 
 ### 🟢SRP — Single Responsibility Principle
 Cada clase tiene una única responsabilidad:
@@ -215,7 +219,7 @@ constructor(repository, validator) {
 ```
 ---
 
-# 🎯Documentación Técnica
+## 🎯Documentación Técnica
 
 Para ver la explicación completa de cómo se aplican los principios SOLID en el proyecto, revisar el archivo:
 
@@ -223,7 +227,7 @@ Para ver la explicación completa de cómo se aplican los principios SOLID en el
 
 ---
 
-# 🎯Posibles Mejoras Futuras
+## 🎯Posibles Mejoras Futuras
 
 * Implementar base de datos real
 * Crear API REST
