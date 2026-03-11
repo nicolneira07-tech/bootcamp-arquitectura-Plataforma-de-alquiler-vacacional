@@ -30,5 +30,4 @@ E [Base de Datos]
 - D --> E
 
 ## 🎯Documentos
-
-- (PATRON-SELECCIONADO.md) - Decisión arquitectónica completa
+- [PATRON-SELECCIONADO.md](PATRON-SELECCIONADO.md) - Decisión arquitectónica completa
