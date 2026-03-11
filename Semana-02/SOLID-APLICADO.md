@@ -1,16 +1,12 @@
-# 🎯 Aplicación de Principios SOLID
+#  🚀Aplicación de Principios SOLID
 
-En esta iteración del proyecto se aplicaron los cinco **principios SOLID**
-con el objetivo de lograr una arquitectura limpia, desacoplada y
-escalable.
+En esta iteración del proyecto se aplicaron los cinco **principios SOLID** con el objetivo de lograr una arquitectura limpia, desacoplada y escalable.
 
-El sistema fue diseñado para gestionar reservas de propiedades
-turísticas utilizando separación clara de responsabilidades y
-dependencias basadas en abstracciones.
+El sistema fue diseñado para gestionar reservas de propiedades turísticas utilizando separación clara de responsabilidades y dependencias basadas en abstracciones.
 
 ---
 
-# 🟢 1. SRP - Single Responsibility Principle
+## 🟢 1. SRP - Single Responsibility Principle
 
 Cada clase del sistema tiene una única responsabilidad y una única razón
 de cambio.
@@ -39,7 +35,7 @@ de cambio.
 Esto evita clases con múltiples responsabilidades (God Classes) y facilita el mantenimiento.
 
 
-# 🟢 2. OCP - Open Closed Principle
+## 🟢 2. OCP - Open Closed Principle
 
 El sistema permite agregar nuevas funcionalidades sin modificar el código existente.
 
@@ -65,7 +61,7 @@ Solo se crea una nueva clase que extienda `Repository`, sin modificar
 
 ---
 
-# 🟢 3. LSP - Liskov Substitution Principle
+## 🟢 3. LSP - Liskov Substitution Principle
 
 Las clases derivadas pueden sustituir a su clase base sin alterar el comportamiento del sistema.
 
@@ -83,7 +79,7 @@ afectar el funcionamiento.
 
 ---
 
-# 🟢 4. ISP - Interface Segregation Principle
+## 🟢 4. ISP - Interface Segregation Principle
 
 La interfaz `Repository` contiene únicamente los métodos necesarios:
 
@@ -97,7 +93,7 @@ La interfaz `Repository` contiene únicamente los métodos necesarios:
 
 ---
 
-# 🟢 5. DIP - Dependency Inversion Principle
+## 🟢 5. DIP - Dependency Inversion Principle
 
 Los módulos de alto nivel no deben depender de módulos de bajo nivel, sino de abstracciones.
 
