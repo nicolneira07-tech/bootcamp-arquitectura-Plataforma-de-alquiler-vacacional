@@ -115,9 +115,6 @@ Si se cambia la base de datos, no es necesario modificar el servicio.
 Esto reduce el acoplamiento y mejora la flexibilidad del sistema.
 
 ---
-# 📊 Tabla de Cumplimiento SOLID
-
----
 
 # 📊 Tabla de Cumplimiento SOLID
 
