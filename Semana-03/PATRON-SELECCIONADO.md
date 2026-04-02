@@ -1,5 +1,5 @@
 
-# 🚀ADR-003: Selección de Patrón Arquitectónico - Plataforma de Alquiler Vacacional
+# 🚀Selección de Patrón Arquitectónico - Plataforma de Alquiler Vacacional
 
 ### Estado
 Aceptado
