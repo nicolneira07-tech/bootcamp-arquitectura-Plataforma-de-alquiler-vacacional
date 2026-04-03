@@ -54,13 +54,13 @@ Descripción:
 
 Divide el sistema en capas independientes como presentación, negocio y datos.
 
-- ✅ Pros
+✅ Pros
 
   - Fácil mantenimiento
   - Separación clara de responsabilidades
   - Muy usada en APIs
 
-- ❌ Contras
+❌ Contras
 
   - Puede crecer mucho el número de archivos
 
@@ -72,12 +72,12 @@ Descripción
 
 Divide el sistema en Modelo, Vista y Controlador.
 
-- ✅ Pros
+✅ Pros
 
   - Organización clara
   - Fácil para aplicaciones web
 
-- ❌ Contras
+❌ Contras
 
   - Menos flexible para APIs grandes
 
@@ -89,12 +89,12 @@ Descripción
 
 Divide el sistema en servicios independientes.
 
-- ✅ Pros
+✅ Pros
 
   - Alta escalabilidad
   - Independencia entre servicios
 
-- ❌ Contras
+❌ Contras
 
   - Alta complejidad
   - Infraestructura más difícil
