@@ -1,1 +1,14 @@
 
+[Cliente (Host / Guest / Admin)]
+              ↓
+           [Routes]
+              ↓
+        [Controllers]
+              ↓
+         [Services]
+ (Reglas de negocio y validaciones)
+              ↓
+       [Repositories]
+              ↓
+        [Base de datos]
+
