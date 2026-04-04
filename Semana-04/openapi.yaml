@@ -1,1 +1,71 @@
 
+openapi: 3.0.0
+info:
+  title: API Plataforma de Alquiler Vacacional
+  version: 1.0.0
+  description: API para gestión de propiedades con validación de licencias, control de días e incidencias.
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /api/v1/properties:
+    get:
+      summary: Listar propiedades
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Lista de propiedades
+
+    post:
+      summary: Crear propiedad
+      responses:
+        "201":
+          description: Propiedad creada
+
+  /api/v1/properties/{id}:
+    get:
+      summary: Obtener propiedad
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: No encontrado
+
+    put:
+      summary: Actualizar propiedad
+
+    patch:
+      summary: Actualizar parcialmente
+
+    delete:
+      summary: Eliminar propiedad
+
+  /api/v1/properties/{id}/license:
+    post:
+      summary: Crear licencia
+
+    get:
+      summary: Obtener licencia
+
+  /api/v1/properties/{id}/bookings:
+    post:
+      summary: Crear reserva
+
+    get:
+      summary: Listar reservas
+
+  /api/v1/properties/{id}/incidents:
+    post:
+      summary: Crear incidencia
+
+    get:
+      summary: Listar incidencias
