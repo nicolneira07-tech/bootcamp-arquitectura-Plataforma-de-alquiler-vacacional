@@ -2,41 +2,32 @@
 openapi: 3.0.0
 info:
   title: API Plataforma de Alquiler Vacacional
+  description: API para gestión de propiedades en una plataforma de alquiler vacacional
   version: 1.0.0
-  description: API REST para gestión de propiedades con validación de licencias, control de días e incidencias.
 
 servers:
   - url: http://localhost:3000
 
+tags:
+  - name: Properties
+    description: Gestión de propiedades
+
 paths:
   /api/v1/properties:
     get:
-      summary: Listar propiedades
-      parameters:
-        - name: page
-          in: query
-          schema:
-            type: integer
-            default: 1
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            default: 10
-        - name: location
-          in: query
-          schema:
-            type: string
+      tags: [Properties]
+      summary: Listar todas las propiedades
       responses:
-        "200":
+        '200':
           description: Lista de propiedades
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PropertyListResponse'
+                $ref: '#/components/schemas/PropertyList'
 
     post:
-      summary: Crear propiedad
+      tags: [Properties]
+      summary: Crear una propiedad
       requestBody:
         required: true
         content:
@@ -44,12 +35,83 @@ paths:
             schema:
               $ref: '#/components/schemas/PropertyInput'
       responses:
-        "201":
+        '201':
           description: Propiedad creada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyResponse'
 
   /api/v1/properties/{id}:
     get:
-      summary: Obtener propiedad
+      tags: [Properties]
+      summary: Obtener propiedad por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la propiedad
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Propiedad encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyResponse'
+        '404':
+          description: No encontrado
+
+    put:
+      tags: [Properties]
+      summary: Actualizar propiedad completamente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyInput'
+      responses:
+        '200':
+          description: Propiedad actualizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyResponse'
+
+    patch:
+      tags: [Properties]
+      summary: Actualizar propiedad parcialmente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyInput'
+      responses:
+        '200':
+          description: Propiedad actualizada parcialmente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyResponse'
+
+    delete:
+      tags: [Properties]
+      summary: Eliminar propiedad
       parameters:
         - name: id
           in: path
@@ -57,179 +119,55 @@ paths:
           schema:
             type: integer
       responses:
-        "200":
-          description: Propiedad encontrada
-        "404":
+        '200':
+          description: Propiedad eliminada
+        '404':
           description: No encontrado
-
-    put:
-      summary: Actualizar propiedad completa
-
-    patch:
-      summary: Actualizar propiedad parcial
-
-    delete:
-      summary: Eliminar propiedad
-
-  /api/v1/properties/{id}/license:
-    post:
-      summary: Crear licencia
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/License'
-      responses:
-        "201":
-          description: Licencia creada
-
-    get:
-      summary: Obtener licencia
-      responses:
-        "200":
-          description: Licencia encontrada
-
-  /api/v1/properties/{id}/bookings:
-    post:
-      summary: Crear reserva (valida licencia y días)
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Booking'
-      responses:
-        "201":
-          description: Reserva creada
-        "400":
-          description: Error de validación
-
-    get:
-      summary: Listar reservas
-      responses:
-        "200":
-          description: Lista de reservas
-
-  /api/v1/properties/{id}/incidents:
-    post:
-      summary: Crear incidencia
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Incident'
-      responses:
-        "201":
-          description: Incidencia creada
-
-    get:
-      summary: Listar incidencias
-      responses:
-        "200":
-          description: Lista de incidencias
 
 components:
   schemas:
-
     Property:
       type: object
       properties:
         id:
           type: integer
+          example: 123456
         title:
           type: string
-        location:
-          type: string
-        pricePerNight:
+          example: Casa en Cartagena
+        price:
           type: number
-        maxDaysPerYear:
-          type: integer
+          example: 300
 
     PropertyInput:
       type: object
       required:
         - title
-        - location
+        - price
       properties:
         title:
           type: string
-        location:
-          type: string
-        pricePerNight:
+          example: Casa en Bogotá
+        price:
           type: number
-        maxDaysPerYear:
-          type: integer
+          example: 200
 
-    License:
-      type: object
-      properties:
-        id:
-          type: integer
-        propertyId:
-          type: integer
-        number:
-          type: string
-        valid:
-          type: boolean
-
-    Booking:
-      type: object
-      properties:
-        id:
-          type: integer
-        propertyId:
-          type: integer
-        guestName:
-          type: string
-        days:
-          type: integer
-
-    Incident:
-      type: object
-      properties:
-        id:
-          type: integer
-        propertyId:
-          type: integer
-        description:
-          type: string
-
-    PropertyListResponse:
+    PropertyResponse:
       type: object
       properties:
         success:
           type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/Property'
+
+    PropertyList:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
         data:
           type: array
           items:
             $ref: '#/components/schemas/Property'
-        meta:
-          type: object
-          properties:
-            pagination:
-              type: object
-              properties:
-                page:
-                  type: integer
-                limit:
-                  type: integer
-                total:
-                  type: integer
-                totalPages:
-                  type: integer
-        timestamp:
-          type: string
-
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            statusCode:
-              type: integer
-        timestamp:
-          type: string
