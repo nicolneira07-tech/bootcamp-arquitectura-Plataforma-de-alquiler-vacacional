@@ -1,4 +1,18 @@
 
+## 🏗️ Factory Method — Creación de Propiedades
+
 ```mermaid
 classDiagram
-PropertyFactory --> Property
+    class PropertyFactory {
+        +create(type, data)
+    }
+
+    class Property {
+        +id
+        +title
+        +location
+        +pricePerNight
+        +type
+    }
+
+    PropertyFactory --> Property
