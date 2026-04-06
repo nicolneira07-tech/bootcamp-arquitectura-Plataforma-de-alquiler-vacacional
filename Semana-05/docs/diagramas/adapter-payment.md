@@ -1,6 +1,12 @@
 
-
-## Adapter
 ```mermaid
 classDiagram
-PaymentAdapter --> ExternalPayment
+    class PaymentAdapter {
+        +pay(amount)
+    }
+
+    class ExternalPayment {
+        +makePayment(amount)
+    }
+
+    PaymentAdapter --> ExternalPayment
