@@ -1,7 +1,18 @@
 
+# 📄 2. strategy-pricing.md
 
-## Strategy
+## 🧠 Strategy — Cálculo de Precios
+
 ```mermaid
 classDiagram
-Strategy <|-- DiscountStrategy
-Strategy <|-- HighSeasonStrategy
+    class Strategy {
+        +calculate(price)
+    }
+
+    class NormalStrategy
+    class DiscountStrategy
+    class HighSeasonStrategy
+
+    Strategy <|-- NormalStrategy
+    Strategy <|-- DiscountStrategy
+    Strategy <|-- HighSeasonStrategy
