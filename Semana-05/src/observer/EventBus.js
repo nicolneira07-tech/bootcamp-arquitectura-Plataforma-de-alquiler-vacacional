@@ -1,1 +1,17 @@
 
+export class EventBus {
+  constructor() {
+    this.events = {};
+  }
+
+  on(event, handler) {
+    if (!this.events[event]) this.events[event] = [];
+    this.events[event].push(handler);
+  }
+
+  emit(event, data) {
+    if (this.events[event]) {
+      this.events[event].forEach(h => h(data));
+    }
+  }
+}
