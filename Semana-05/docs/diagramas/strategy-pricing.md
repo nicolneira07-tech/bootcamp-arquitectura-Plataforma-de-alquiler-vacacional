@@ -1,6 +1,4 @@
 
-# 📄 2. strategy-pricing.md
-
 ## 🧠 Strategy — Cálculo de Precios
 
 ```mermaid
