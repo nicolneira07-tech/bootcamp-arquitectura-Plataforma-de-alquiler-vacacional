@@ -1,6 +1,4 @@
 
-## 🏗️ Factory Method — Creación de Propiedades
-
 ```mermaid
 classDiagram
     class PropertyFactory {
