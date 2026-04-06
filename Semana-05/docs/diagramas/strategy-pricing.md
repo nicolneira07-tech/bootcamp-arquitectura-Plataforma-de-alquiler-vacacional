@@ -1,6 +1,4 @@
 
-## 🧠 Strategy — Cálculo de Precios
-
 ```mermaid
 classDiagram
     class Strategy {
