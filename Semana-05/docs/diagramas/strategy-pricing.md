@@ -1,7 +1,6 @@
 
 
 ## Strategy
-```markdown
 ```mermaid
 classDiagram
 Strategy <|-- DiscountStrategy
