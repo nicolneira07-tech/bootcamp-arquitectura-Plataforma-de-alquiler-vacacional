@@ -1,8 +1,7 @@
-
 openapi: 3.0.0
 info:
   title: API Plataforma de Alquiler Vacacional
-  description: API para gestión de propiedades en una plataforma de alquiler vacacional
+  description: API para la gestión de propiedades en una plataforma de alquiler vacacional
   version: 1.0.0
 
 servers:
@@ -16,18 +15,38 @@ paths:
   /api/v1/properties:
     get:
       tags: [Properties]
-      summary: Listar todas las propiedades
+      summary: Listar propiedades
+      description: Permite obtener una lista de propiedades con paginación y filtros
+      parameters:
+        - name: page
+          in: query
+          description: Número de página
+          schema:
+            type: integer
+            example: 1
+        - name: limit
+          in: query
+          description: Cantidad de resultados por página
+          schema:
+            type: integer
+            example: 10
       responses:
         '200':
-          description: Lista de propiedades
+          description: Lista de propiedades obtenida correctamente
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/PropertyList'
+              example:
+                success: true
+                data:
+                  - id: 1
+                    title: Casa en Cartagena
+                    price: 300
+        '500':
+          description: Error del servidor
 
     post:
       tags: [Properties]
-      summary: Crear una propiedad
+      summary: Crear propiedad
       requestBody:
         required: true
         content:
@@ -36,11 +55,17 @@ paths:
               $ref: '#/components/schemas/PropertyInput'
       responses:
         '201':
-          description: Propiedad creada
+          description: Propiedad creada correctamente
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/PropertyResponse'
+              example:
+                success: true
+                data:
+                  id: 1
+                  title: Casa en Bogotá
+                  price: 200
+        '400':
+          description: Datos inválidos
 
   /api/v1/properties/{id}:
     get:
@@ -58,10 +83,14 @@ paths:
           description: Propiedad encontrada
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/PropertyResponse'
+              example:
+                success: true
+                data:
+                  id: 1
+                  title: Casa en Medellín
+                  price: 250
         '404':
-          description: No encontrado
+          description: Propiedad no encontrada
 
     put:
       tags: [Properties]
@@ -81,10 +110,8 @@ paths:
       responses:
         '200':
           description: Propiedad actualizada
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PropertyResponse'
+        '404':
+          description: No encontrada
 
     patch:
       tags: [Properties]
@@ -104,10 +131,8 @@ paths:
       responses:
         '200':
           description: Propiedad actualizada parcialmente
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PropertyResponse'
+        '404':
+          description: No encontrada
 
     delete:
       tags: [Properties]
@@ -120,9 +145,9 @@ paths:
             type: integer
       responses:
         '200':
-          description: Propiedad eliminada
+          description: Propiedad eliminada correctamente
         '404':
-          description: No encontrado
+          description: No encontrada
 
 components:
   schemas:
@@ -131,7 +156,7 @@ components:
       properties:
         id:
           type: integer
-          example: 123456
+          example: 1
         title:
           type: string
           example: Casa en Cartagena
@@ -151,23 +176,3 @@ components:
         price:
           type: number
           example: 200
-
-    PropertyResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        data:
-          $ref: '#/components/schemas/Property'
-
-    PropertyList:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Property'
