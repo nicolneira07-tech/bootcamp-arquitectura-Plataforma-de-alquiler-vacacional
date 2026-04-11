@@ -1,14 +1,10 @@
+import db from "../patterns/db.js";
+import { PropertyFactory } from "../patterns/propertyFactory.js";
 
-import { PropertyModel } from "../models/propertyModel.js";
+export const getAllProperties = () => db.properties;
 
-const model = new PropertyModel();
-
-export class PropertyService {
-  create(data) {
-    return model.create(data);
-  }
-
-  getAll() {
-    return model.getAll();
-  }
-}
+export const createProperty = (data) => {
+  const property = PropertyFactory.create(data);
+  db.properties.push(property);
+  return property;
+};

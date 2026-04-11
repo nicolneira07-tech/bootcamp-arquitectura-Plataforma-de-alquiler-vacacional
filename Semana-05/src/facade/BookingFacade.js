@@ -1,4 +1,3 @@
-
 export class BookingFacade {
   constructor(propertyModel, paymentAdapter, eventBus) {
     this.propertyModel = propertyModel;
@@ -6,18 +5,29 @@ export class BookingFacade {
     this.eventBus = eventBus;
   }
 
-  createBooking(data) {
-    const property = this.propertyModel.getById(data.propertyId);
+  createBooking({ property }) {
+    if (!property) {
+      throw new Error("Property is required");
+    }
 
-    const payment = this.paymentAdapter.pay(property.pricePerNight);
+    if (!property.pricePerNight) {
+      throw new Error("pricePerNight is required");
+    }
 
-    const booking = {
-      ...data,
-      total: property.pricePerNight
+    const total = property.pricePerNight;
+
+    this.paymentAdapter.pay(total);
+
+    this.eventBus.emit("bookingCreated", { property });
+
+    return {
+      booking: {
+        property,
+        total
+      }
+  
     };
-
-    this.eventBus.emit("bookingCreated", booking);
-
-    return { booking, payment };
   }
+
 }
+

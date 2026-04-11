@@ -1,200 +1,340 @@
-
-# 🚀 Plataforma de Alquiler Vacacional — Semana 05
-
-## 📌 Descripción
-
-Este proyecto corresponde a la **refactorización de la API desarrollada en la semana 04**, aplicando patrones de diseño para mejorar la organización, mantenibilidad y escalabilidad del sistema.
-
-El dominio implementado es una **Plataforma de Alquiler Vacacional**, donde se gestionan propiedades y reservas.
+# 🏡 Plataforma de Alquiler Vacacional - API
 
 ---
 
-## 🧱 Arquitectura en Capas
+## 📌 Descripción del Proyecto
 
-El sistema está estructurado en arquitectura en capas:
+Este proyecto consiste en el desarrollo de una API REST para la gestión de una plataforma de alquiler vacacional.
 
-- **Capa de Presentación (Controllers)**  
-  Maneja las solicitudes HTTP y delega la lógica.
+La API permite administrar:
 
-- **Capa de Negocio (Services)**  
-  Contiene la lógica principal del sistema.
+* 📅 Reservas (**Bookings**)
+* 📜 Licencias (**Licenses**)
+* ⚠️ Incidentes (**Incidents**)
 
-- **Capa de Datos (Models)**  
-  Gestiona la persistencia y creación de entidades.
-
-- **Capa de Integración**  
-  Maneja la comunicación con servicios externos.
+El sistema fue diseñado aplicando buenas prácticas de arquitectura de software, separación de responsabilidades y modularización del código.
 
 ---
 
-## 🧠 Patrones de Diseño Implementados
+## 🎯 Objetivos
 
-| Tipo | Patrón |
-|------|--------|
-| Creacional | Factory Method |
-| Creacional | Singleton |
-| Estructural | Adapter |
-| Estructural | Facade |
-| Comportamiento | Strategy |
-| Comportamiento | Observer |
+* Implementar una API REST funcional
+* Aplicar arquitectura en capas
+* Separar responsabilidades (Routes, Controllers, Services)
+* Simular persistencia de datos sin base de datos
+* Preparar el sistema para escalabilidad futura
 
 ---
 
-## 🧱 Aplicación de Patrones por Capas
+## 🚀 Tecnologías Utilizadas
 
-- **Capa de Datos**
-  - Factory Method → creación de propiedades
-
-- **Capa de Negocio**
-  - Strategy → cálculo de precios
-  - Observer → eventos del sistema
-  - Facade → coordinación de reservas
-
-- **Capa de Integración**
-  - Adapter → integración con sistema de pagos
-
-- **Configuración Global**
-  - Singleton → manejo de configuración
-
-- **Capa de Presentación**
-  - Sin patrones, solo delegación de responsabilidades
+* **Node.js** → Entorno de ejecución
+* **Express.js** → Framework backend
+* **Nodemon** → Ejecución en desarrollo
+* **JavaScript (ES Modules)** → Lenguaje principal
 
 ---
 
-## 🔗 Cómo cooperan los patrones
+## 🏗️ Arquitectura del Sistema
 
-Los patrones trabajan en conjunto para desacoplar el sistema:
+El proyecto sigue una **arquitectura en capas (Layered Architecture)**:
 
-- **Factory** crea objetos de propiedades
-- **Strategy** define cómo calcular precios
-- **Facade** coordina el proceso de reservas
-- **Adapter** conecta el sistema con servicios externos
-- **Observer** reacciona a eventos del sistema
-- **Singleton** gestiona configuración global
+### 🔹 Capas
 
-Esto permite un sistema flexible, modular y escalable.
+1. **Capa de Presentación (Routes)**
+   Define los endpoints de la API
+
+2. **Capa de Control (Controllers)**
+   Maneja las peticiones HTTP y respuestas
+
+3. **Capa de Negocio (Services)**
+   Contiene la lógica del sistema
+
+4. **Capa de Datos (In-Memory)**
+   Almacenamiento temporal usando objetos JavaScript
 
 ---
 
-## ⚙️ Instalación
+## 🔄 Flujo de la Aplicación
 
-```bash
-pnpm install
+```id="flowapp"
+Cliente → Routes → Controllers → Services → Respuesta JSON
 ```
 
-## ▶️ Ejecución
+---
 
-```bash
-pnpm start
+## 📂 Estructura del Proyecto
+
+```id="estructura001"
+Semana-05/
+├── docs/
+|   ├── diagramas/ 
+|   |   ├── arquitectura-general.md
+|   |   ├── flujo-booking.md
+│   │   ├── flujo-incidente.md
+|   |   ├── flujo-license.md
+│   │   └── modularizacion.md
+|   |
+|   └── patrones-aplicados.md
+|
+|── node_modules/
+|
+|── src/
+|   ├── adapter/
+|   |   └── PaymentAdapter.js
+|   |
+│   ├── controllers/
+│   │   ├── bookingController.js
+|   |   ├── incidentController.js
+│   │   ├── licenseController.js
+│   │   └── propertyController.js
+|   |
+|   ├── facade
+│   │   └──BookingFacade.js
+|   |
+|   ├── models/
+│   │   ├── incident.js
+│   │   ├── license.js
+│   │   ├── propertyInstance.js
+|   |   └── propertyModel.js
+|   |
+|   ├── observers
+│   │   └──logObserver.js  
+|   |
+|   ├── patterns/
+|   |   └── factory/
+│   │        ├── bookingStrategy.js
+│   │        ├── db.js
+│   │        ├── eventBus.js
+|   |        └── propertyFactory.js
+|   |
+|   ├── routes/
+│   │   ├── bookingRoutes.js
+|   |   ├── incidentRoutes.js
+│   │   ├── licenseRoutes.js
+│   │   └── propertyRoutes.js
+│   │
+│   ├── services/
+│   │   ├── bookingService.js
+|   |   ├── incidentService.js
+│   │   ├── licenseService.js
+│   │   └── propertyService.js
+│   │
+│   ├── singlenton/
+│   │   └── Config.js
+│   |
+|   ├── strategy/
+│   │   └── PrincingStrategies.js
+│   │
+|   ├── test/
+│   │   └── Property.test.js 
+|   |
+|   ├── index.js
+│   │   
+│   └── swagger.js
+|
+|── package-lock.json   
+│
+|── package.json
+|
+|── pnpm-lock.yaml   
+│
+└── README.md
+
+```                                                                                                               
+---
+
+## ⚙️ Instalación y Configuración
+
+### 1️⃣ Clonar el repositorio
+
+```bash id="clone001"
+git clone <URL_DEL_REPOSITORIO>
+cd Semana-05
 ```
 
-El servidor se ejecuta en:
+---
 
-`http://localhost:3000`
+### 2️⃣ Instalar dependencias
 
-🧪 Tests
-
-```bash
-pnpm test
+```bash id="install001"
+npm install
 ```
 
-Se utiliza el test runner nativo de Node.js para validar funcionalidades básicas.
+---
 
-## 📡 Endpoints
-### 🏠 Propiedades
-- Crear propiedad 
-`POST /api/v1/properties`
+### 3️⃣ Ejecutar el servidor
 
-- Listar propiedades
-`GET /api/v1/properties`
+```bash id="run001"
+npm run dev
+```
 
+---
 
-### 📅 Reservas
-- Crear reserva
-`POST /api/v1/bookings`
+## 🌐 Servidor
 
-## 📥 Ejemplo de Request
-```json
+La API se ejecuta en:
+
+```id="server001"
+http://localhost:3001
+```
+
+---
+
+## 🔗 Endpoints de la API
+
+---
+
+### 📅 Bookings (Reservas)
+
+#### ✅ Crear reserva
+
+```id="b1"
+POST /bookings
+```
+
+**Body:**
+
+```json id="b2"
 {
-  "type": "house",
-  "title": "Casa en Cartagena",
-  "location": "Cartagena",
-  "pricePerNight": 200
+  "propertyId": 1,
+  "guestName": "Andrea",
+  "nights": 3
 }
 ```
----
-
-# 📊 Diagramas
-
-Los diagramas de los patrones se encuentran en:
-
-`docs/diagramas/`
-
-Incluyen:
-
-- Factory Method
-- Strategy
-- Observer
-- Adapter
-- Facade
-
----
-# 📘 Documentación de Patrones
-
-Ver archivo:
-`docs/patrones-aplicados.md`
-
-Incluye:
-
-- Problema original
-- Antes / Después
-- Principios SOLID
-- Beneficios
-- Diagramas
 
 ---
 
-# 📊 Comparación (Semana 04 vs Semana 05)
-Antes
-- Código acoplado
-- Lógica mezclada
-- Difícil mantenimiento
-- No escalable
-  
-Después
-- Uso de patrones de diseño
-- Separación por capas
-- Código desacoplado
-- Alta escalabilidad
+#### 📄 Obtener reservas
+
+```id="b3"
+GET /bookings
+```
 
 ---
-# 🔮 Extensibilidad
 
-El sistema permite agregar nuevas funcionalidades sin modificar código existente.
+---
 
-### Ejemplo: nueva estrategia
-```js
-class WeekendStrategy {
-  calculate(price) {
-    return price * 1.15;
-  }
+### 📜 Licenses (Licencias)
+
+#### ✅ Crear licencia
+
+```id="l1"
+POST /licenses/:propertyId
+```
+
+**Body:**
+
+```json id="l2"
+{
+  "type": "tourism",
+  "valid": true
 }
 ```
-Esto cumple con el principio Open/Closed.
-
-# 🏆 Beneficios Obtenidos
-- Bajo acoplamiento
-- Alta cohesión
-- Código limpio
-- Escalabilidad
-- Preparación para arquitecturas futuras (Clean / Hexagonal)
 
 ---
-👩‍💻 Autor
 
-Proyecto académico
-Bootcamp Arquitectura de Software — SENA
+#### 📄 Obtener licencias
 
+```id="l3"
+GET /licenses
+```
 
+---
 
+---
+
+### ⚠️ Incidents (Incidentes)
+
+#### ✅ Crear incidente
+
+```id="i1"
+POST /incidents/:bookingId
+```
+
+**Body:**
+
+```json id="i2"
+{
+  "description": "Daño en la propiedad"
+}
+```
+
+---
+
+#### 📄 Obtener incidentes
+
+```id="i3"
+GET /incidents
+```
+
+---
+
+## 🧪 Pruebas de la API
+
+Puedes probar los endpoints con:
+
+* Thunder Client (VS Code)
+* Postman
+
+### ✔️ Recomendaciones
+
+* Usar método correcto (GET, POST)
+* Enviar JSON válido
+* Verificar que el servidor esté activo
+
+---
+
+## ⚠️ Consideraciones Técnicas
+
+* Los datos se almacenan en memoria (no base de datos)
+* La información se pierde al reiniciar el servidor
+* No se implementa autenticación en esta versión
+
+---
+
+## 📈 Escalabilidad
+
+La arquitectura permite integrar fácilmente:
+
+* Base de datos (MongoDB, PostgreSQL)
+* Validaciones con middlewares
+* Autenticación (JWT)
+* Arquitecturas avanzadas
+
+---
+
+## 🧠 Buenas Prácticas Aplicadas
+
+* Separación de responsabilidades (SRP)
+* Arquitectura en capas
+* Diseño modular
+* Uso de REST
+
+---
+
+## 📊 Estado del Proyecto
+
+| Característica        | Estado |
+| --------------------- | ------ |
+| API funcional         | ✅      |
+| Arquitectura en capas | ✅      |
+| Modularización        | ✅      |
+| Persistencia real     | ❌      |
+
+---
+
+## 👩‍💻 Autor
+
+Desarrollado como parte del bootcamp de Arquitectura de Software.
+
+---
+
+## 🏁 Conclusión
+
+Este proyecto demuestra la implementación de una API REST organizada, aplicando principios fundamentales de desarrollo backend.
+
+La estructura permite evolucionar el sistema hacia soluciones más robustas y escalables en entornos reales.
+
+---
 

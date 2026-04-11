@@ -1,13 +1,14 @@
 
 export class PropertyFactory {
-  static create(type, data) {
-    switch (type) {
-      case "house":
-        return { ...data, type: "house", garden: true };
-      case "apartment":
-        return { ...data, type: "apartment", elevator: true };
-      default:
-        return { ...data, type: "basic" };
-    }
+  static create(data) {
+    return {
+      id: Date.now(),
+      title: data.title,
+      location: data.location,
+      pricePerNight: data.pricePerNight,
+      maxDaysPerYear: data.maxDaysPerYear,
+      createdAt: new Date(),
+      license: null
+    };
   }
 }

@@ -1,169 +1,258 @@
 
 # 📘 Patrones de Diseño Aplicados — Plataforma de Alquiler Vacacional
 
----
 
-## 🧱 Relación con Arquitectura en Capas
 
-Los patrones fueron implementados respetando la arquitectura en capas:
+## 📌 Introducción
 
-- **Capa de Datos (Models)**
-  - Factory Method → creación de propiedades
+En el desarrollo de la API de alquiler vacacional se aplicaron principios de diseño y patrones arquitectónicos con el objetivo de construir un sistema:
 
-- **Capa de Negocio (Services)**
-  - Strategy → cálculo de precios
-  - Observer → manejo de eventos
-  - Facade → coordinación de reservas
+* Escalable
+* Mantenible
+* Modular
+* Fácil de extender
 
-- **Capa de Integración**
-  - Adapter → integración con sistema de pagos
-
-- **Configuración Global**
-  - Singleton → configuración de la aplicación
-
-- **Capa de Presentación (Controllers)**
-  - Sin patrones, solo delegación
+Aunque se trata de una API sin base de datos (in-memory), la estructura permite evolucionar hacia arquitecturas más complejas como **Clean Architecture** o **Arquitectura Hexagonal**.
 
 ---
 
-# 🏗️ Patrón: Factory Method
+## 🧱 1. Arquitectura en Capas (Layered Architecture)
 
-## Problema Original
+### 📖 Descripción
 
-La creación de propiedades estaba distribuida en múltiples partes del código, generando duplicación y dificultad para escalar nuevos tipos.
+El sistema está organizado en capas, donde cada una tiene una responsabilidad específica:
 
-## Antes (❌)
+* **Capa de Presentación (Routes)**
+* **Capa de Control (Controllers)**
+* **Capa de Negocio (Services)**
+* **Capa de Datos (In-Memory Storage)**
 
-```js
-const property = {
-  title,
-  location,
-  pricePerNight
+### 🔄 Flujo de ejecución
+
+```id="flow123"
+Cliente → Routes → Controllers → Services → Respuesta
+```
+
+### 🎯 Problema que resuelve
+
+Evita tener lógica mezclada en un solo archivo, lo que dificulta el mantenimiento y la escalabilidad.
+
+### ✅ Beneficios
+
+* Separación clara de responsabilidades
+* Bajo acoplamiento
+* Mayor facilidad para pruebas
+* Escalabilidad del sistema
+
+---
+
+## 🧠 2. Principio de Responsabilidad Única (SRP)
+
+### 📖 Descripción
+
+Cada módulo o archivo tiene una única responsabilidad:
+
+* **Routes** → Definir endpoints
+* **Controllers** → Manejar requests y responses
+* **Services** → Contener la lógica de negocio
+
+### 💻 Ejemplo
+
+```js id="srp001"
+// Controller
+export const create = (req, res) => {
+  const booking = createBooking(req.body);
+  res.status(201).json(booking);
 };
 ```
 
-## Después (✅)
+### 🎯 Problema que resuelve
 
-```js
-PropertyFactory.create(type, data);
-```
+Evita código difícil de mantener cuando una sola función hace múltiples tareas.
 
-## Principio SOLID Reforzado
+### ✅ Beneficios
 
-**Single Responsibility Principle** - 
-La creación de objetos se delega a una clase especializada.
-
-### Diagrama
-
-Ver: `docs/diagramas/factory-property.md`
-
-### Beneficios Obtenidos
-- Centralización de la creación
-- Escalabilidad para nuevos tipos
-- Reducción de duplicación
+* Código más limpio
+* Fácil de entender
+* Mejora el mantenimiento
+* Reduce errores
 
 ---
 
-# 🎛️ Patrón: Facade
+## 🌐 3. Arquitectura REST
 
-## Problema Original
+### 📖 Descripción
 
-El proceso de reservas implicaba múltiples pasos complejos distribuidos en varios servicios.
+La API sigue los principios REST para la comunicación cliente-servidor:
 
-## Antes (❌)
+* Uso de métodos HTTP:
 
-Múltiples llamadas manuales a servicios.
+  * GET → Obtener información
+  * POST → Crear recursos
+  * PATCH → Actualizar recursos
+* Uso de JSON como formato de intercambio
+* Identificación de recursos mediante URLs
 
-## Después (✅)
-```js
-bookingFacade.createBooking(data);
+### 💻 Ejemplos
+
+```id="rest001"
+GET /bookings
+POST /licenses/1
+PATCH /bookings/1/123/cancel
 ```
 
-## Principio SOLID Reforzado
+### 🎯 Problema que resuelve
 
-Single Responsibility Principle
+Define un estándar claro para la comunicación entre frontend y backend.
 
-### Diagrama
+### ✅ Beneficios
 
-Ver: `docs/diagramas/facade-booking.md`
-
-### Beneficios Obtenidos
-- Simplificación del flujo
-- Código más legible
-- Punto único de acceso
+* Interoperabilidad
+* Escalabilidad
+* Fácil integración con otras aplicaciones
 
 ---
 
-# 🟣 Patrón: Singleton
+## 🧠 4. Patrón In-Memory Storage
 
-## Problema Original
+### 📖 Descripción
 
-La configuración de la aplicación podía duplicarse en diferentes partes del sistema.
+Se utiliza almacenamiento en memoria mediante objetos de JavaScript:
 
-## Antes (❌)
-```js
-const config = { appName: "App" };
+```js id="memory001"
+let bookings = {};
+let licenses = {};
+let incidents = {};
 ```
 
-## Después (✅)
-```js
-import { config } from "./Config.js";
-```
+### 🎯 Problema que resuelve
 
-## Principio SOLID Reforzado
+Permite desarrollar y probar la lógica del sistema sin necesidad de configurar una base de datos.
 
-Control de instancias- (consistencia global)
+### ✅ Beneficios
 
-### Diagrama
+* Implementación rápida
+* Ideal para prototipos
+* Menor complejidad inicial
 
-(No requiere diagrama formal)
+### ⚠️ Limitaciones
 
-### Beneficios Obtenidos
-- Una única instancia global
-- Consistencia en configuración
-- Ahorro de memoria
+* Los datos se pierden al reiniciar el servidor
+* No es adecuado para producción
 
 ---
 
-# 📊 Comparación Global
+## 🧩 5. Modularización
 
-## Antes (Semana 04)
- - Código acoplado
- - Lógica mezclada
- - Difícil mantenimiento
- - No escalable
-   
-## Después (Semana 05)
- - Uso de patrones de diseño
- - Separación por capas
- - Código desacoplado
- - Alta escalabilidad
+### 📖 Descripción
+
+El sistema está dividido en módulos independientes por funcionalidad:
+
+* 📅 Bookings
+* 📜 Licenses
+* ⚠️ Incidents
+
+Cada módulo contiene:
+
+* Controller
+* Service
+* Routes
+
+### 🎯 Problema que resuelve
+
+Evita tener todo el código en un solo archivo.
+
+### ✅ Beneficios
+
+* Código organizado
+* Fácil mantenimiento
+* Escalabilidad funcional
+* Reutilización de código
 
 ---
 
-# 🔮 Extensibilidad
+## 🔄 6. Flujo de Datos en la Aplicación
 
-El sistema permite agregar nuevas funcionalidades sin modificar código existente.
+### 📖 Descripción
 
-### Ejemplo
+El flujo de datos sigue una estructura clara:
 
-```js
-class WeekendStrategy {
-  calculate(price) {
-    return price * 1.15;
-  }
-}
+1. El cliente envía una petición HTTP
+2. La ruta la recibe
+3. El controlador procesa la solicitud
+4. El servicio ejecuta la lógica
+5. Se retorna una respuesta en JSON
+
+### 💻 Ejemplo
+
+```js id="flow002"
+// Route
+router.post("/bookings", create);
+
+// Controller
+export const create = (req, res) => {
+  const data = bookingService.create(req.body);
+  res.json(data);
+};
+
+// Service
+export const create = (data) => {
+  const id = Date.now();
+  bookings[id] = data;
+  return { id, ...data };
+};
 ```
 
-Esto demuestra cumplimiento del principio Open/Closed.
+### ✅ Beneficios
 
-# 🏁 Conclusión
+* Claridad en el flujo
+* Separación de responsabilidades
+* Fácil depuración
 
-La implementación de patrones de diseño permitió:
+---
 
-- Mejorar la arquitectura del sistema
-- Reducir el acoplamiento
-- Aumentar la escalabilidad
-- Preparar el sistema para futuras arquitecturas (Clean/Hexagonal)
+## 📊 7. Comparación: Semana 04 vs Semana 05
+
+### 🟥 Semana 04
+
+* Código más simple
+* Lógica menos estructurada
+* Menor separación de responsabilidades
+* Difícil escalabilidad
+
+### 🟩 Semana 05
+
+* Arquitectura en capas
+* Uso de módulos
+* Separación clara (Routes, Controllers, Services)
+* Mayor mantenibilidad
+* Preparación para crecimiento del sistema
+
+---
+
+## 🔮 8. Escalabilidad y Evolución
+
+La arquitectura actual permite evolucionar fácilmente hacia:
+
+* Integración con bases de datos (MongoDB, PostgreSQL)
+* Implementación de autenticación (JWT)
+* Validación de datos (middlewares)
+* Arquitecturas más avanzadas:
+
+  * Clean Architecture
+  * Arquitectura Hexagonal
+
+---
+
+## 🏁 Conclusión
+
+La implementación de estos patrones y principios permitió:
+
+* ✔️ Organizar el código de forma clara
+* ✔️ Reducir el acoplamiento
+* ✔️ Mejorar la mantenibilidad
+* ✔️ Preparar el sistema para escalabilidad
+
+Aunque el almacenamiento es en memoria, la estructura del proyecto está diseñada siguiendo buenas prácticas profesionales, lo que facilita su evolución a entornos reales.
 
 

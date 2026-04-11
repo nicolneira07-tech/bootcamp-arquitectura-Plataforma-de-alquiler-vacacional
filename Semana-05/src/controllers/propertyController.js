@@ -1,12 +1,10 @@
-
-import { PropertyService } from "../services/propertyService.js";
-
-const service = new PropertyService();
-
-export const createProperty = (req, res) => {
-  res.json(service.create(req.body));
-};
+import { getAllProperties, createProperty } from "../services/propertyService.js";
 
 export const getProperties = (req, res) => {
-  res.json(service.getAll());
+  res.json(getAllProperties());
+};
+
+export const create = (req, res) => {
+  const property = createProperty(req.body);
+  res.status(201).json(property);
 };
